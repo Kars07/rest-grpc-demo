@@ -1,0 +1,64 @@
+// proto/user_service.proto
+syntax = "proto3";
+
+package user;
+
+option go_package = "github.com/Kars07/rest-grpc-demo/proto";
+
+// The User service definition
+service UserService {
+  // Get a single user by ID
+  rpc GetUser (GetUserRequest) returns (UserResponse);
+  
+  // Get all users
+  rpc GetAllUsers (Empty) returns (UserListResponse);
+  
+  // Create a new user
+  rpc CreateUser (CreateUserRequest) returns (UserResponse);
+  
+  // Update an existing user
+  rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
+  
+  // Delete a user
+  rpc DeleteUser (DeleteUserRequest) returns (Empty);
+  
+  // Stream users (server streaming)
+  rpc StreamUsers (Empty) returns (stream UserResponse);
+}
+
+// Message definitions
+message Empty {}
+
+message GetUserRequest {
+  int64 id = 1;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+  string phone = 3;
+}
+
+message UpdateUserRequest {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+  string phone = 4;
+}
+
+message DeleteUserRequest {
+  int64 id = 1;
+}
+
+message UserResponse {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+  string phone = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message UserListResponse {
+  repeated UserResponse users = 1;
+}
