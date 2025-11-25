@@ -1,13 +1,12 @@
-// grpc/server/user_server.go
 package server
 
 import (
 	"context"
 	"time"
 
-	"github.com/Kars/rest-grpc-demo/service"
 	"github.com/Kars07/rest-grpc-demo/models"
 	pb "github.com/Kars07/rest-grpc-demo/proto"
+	"github.com/Kars07/rest-grpc-demo/service"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

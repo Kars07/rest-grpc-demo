@@ -1,4 +1,3 @@
-// grpc/client/user_client.go
 package client
 
 import (

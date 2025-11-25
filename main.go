@@ -1,4 +1,3 @@
-// main.go
 package main
 
 import (
@@ -13,6 +12,7 @@ import (
 	"github.com/Kars07/rest-grpc-demo/service"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -63,6 +63,9 @@ func startGRPCServer(userService *service.UserService) {
 	// Register service
 	userServer := grpcServer.NewUserServer(userService)
 	pb.RegisterUserServiceServer(grpcSrv, userServer)
+
+	// Enable reflection for grpcurl
+	reflection.Register(grpcSrv)
 
 	log.Println("Starting gRPC server on :50051...")
 	if err := grpcSrv.Serve(lis); err != nil {

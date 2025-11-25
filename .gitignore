@@ -1,0 +1,6 @@
+# Ignore protobuf-generated Go files
+proto/*.pb.go
+proto/*_grpc.pb.go
+
+# Or be more specific to your case
+proto/user_service*.pb.go
